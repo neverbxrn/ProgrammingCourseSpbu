@@ -1,5 +1,5 @@
 MAIN=program.cpp
-APP=myprog
+APP=./build/myprog
 
 if [ ! -f $APP ]; then rm $APP
 fi
