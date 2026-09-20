@@ -67,3 +67,8 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+2026_09_14_sort_2_vars/simple_implementation/.idea/
+2026_09_14_sort_2_vars/correct_variant/.idea/
+2026_09_14_sort_2_vars/homework_implementation/.idea/
+2026_09_14_sort_2_vars/homework_1/.idea/
+2026_09_14_sort_2_vars/homework_2/.idea/
