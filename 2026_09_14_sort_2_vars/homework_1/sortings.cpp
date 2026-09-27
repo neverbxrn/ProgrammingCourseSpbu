@@ -1,7 +1,11 @@
+#include <iostream>
+
 #include "sortings.hpp"
+#include "io.hpp"
 
 void list_sorts::my_sort(int *arr, const int size) {
     bool sorted = false;
+    int counter = 0;
 
     while (!sorted) {
         sorted = true;
@@ -19,11 +23,14 @@ void list_sorts::my_sort(int *arr, const int size) {
 
                     sorted = false;
 
-                    // cout_list(arr, size);
+                    list_io::cout_list(arr, size);
 
                     break;
                 }
             }
         }
+
+        counter++;
+        std::cout << counter << std::endl;
     }
 }

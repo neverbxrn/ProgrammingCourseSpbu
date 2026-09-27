@@ -1,119 +1,82 @@
 #include <iostream>
 
-void cout_list(int *arr, const int length);
-void str_to_array(const std::string& _string, int arr[]);
-void my_sort(int *arr, const int size);
-
-
-// TODO Интерфейс пользователя должен быть на русском языке
-int main() {
-	std::cout << "Вводите числа(int) массива, после напишите 's', чтобы закончить" << std::endl;
-
-	bool active = true;
-	int count = 0;
-	std::string input;
-	std::string current;
-
-	while (active == true) {
-		std::cin >> current;
-
-		if (current != "s") {
-			input += current + " ";
-
-			count++;
-		}
-
-		else { active = false; }
-	}
-
-	int arr[count];
-
-	str_to_array(input, arr);
-
-	cout_list(arr, count);
-
-	my_sort(arr, count);
-
-	cout_list(arr, count);
-
-	std::cout << "Нажмите Enter для выхода...";
-	std::cin.ignore(); // Очищает буфер (если до этого был ввод)
-	std::cin.get();
-
-    // TODO Пользователь вводит размер массив и элементы массива
-
-	// TODO вызвается void my_sort(int *arr, int size)
-	
-	// TODO Выводится первоначальный массив и отсортированный
-}
-
 void cout_list(int *arr, const int length) {
-	std::cout << '[';
+    std::cout << '[';
 
-	for (int i = 0; i < length; i++) {
-		int x = arr[i];
+    for (int i = 0; i < length; i++) {
+        if (i != length - 1) {
+            std::cout << arr[i] << ", ";
+        } else {
+            std::cout << arr[i];
+        }
+    }
 
-		if (i != length-1) {
-			std::cout << x << ", ";
-		}
-
-		else {
-			std::cout << x;
-		}
-	}
-
-	std::cout << ']';
-
-	std::cout << std::endl;
-}
-
-void str_to_array(const std::string& _string, int arr[]) {
-	int i = 0;
-	int last_blank_symb = -1;
-	int blank_symb = 0;
-	int len = 0;
-
-	for (i; i < _string.length(); i++) {
-		if (_string[i] == ' ') {
-			blank_symb = i;
-
-			std::string _number = _string.substr(last_blank_symb+1, blank_symb-last_blank_symb);
-
-			int number = std::stoi(_number);
-
-			arr[len] = number;
-
-			len++;
-			last_blank_symb = blank_symb;
-		}
-	}
-
+    std::cout << ']' << std::endl;
 }
 
 void my_sort(int *arr, const int size) {
-	bool sorted = false;
+    bool sorted = false;
+    int counter = 0;
 
-	while (!sorted) {
-		sorted = true;
+    while (!sorted) {
+        sorted = true;
 
-		// std::cout << "zanogo" << std::endl;
+        for (int i = size - 1; i != 0; i--) {
+            int opora = arr[i];
 
-		for (int i = size-1; i != 0; i--) {
-			int opora = arr[i];
+            for (int j = 0; j < i; j++) {
+                if (opora < arr[j]) {
+                    int tk = arr[j];
+                    arr[j] = opora;
+                    arr[i] = tk;
 
-			for (int j = 0; j < i; j++) {
-				if (opora < arr[j]) {
-					int tk = arr[j];
-					arr[j] = opora;
-					arr[i] = tk;
+                    sorted = false;
 
-					sorted = false;
+                    cout_list(arr, size);
+                    break;
+                }
+            }
+        }
 
-					// cout_list(arr, size);
+        counter++;
+        std::cout << counter << std::endl;
+    }
+}
 
-					break;
-				}
-			}
-		}
-	}
+int main() {
+    std::cout << "Введите кол-во чисел массива: " << std::endl;
+
+    int amount = 0;
+    std::cin >> amount;
+
+    if (amount <= 0) {
+        std::cout << "не" << std::endl;
+        std::cout << "Нажмите Enter для выхода..." << std::endl;
+        std::cin.ignore();
+        std::cin.get();
+        return 0;
+    }
+
+    int *arr = new int[amount];
+
+    int current = 0;
+    for (int i = 0; i < amount; i++) {
+        std::cout << "Число i = " << i << ": " << std::endl;
+        std::cin >> current;
+        arr[i] = current;
+    }
+
+    cout_list(arr, amount);
+
+    my_sort(arr, amount);
+
+    cout_list(arr, amount);
+
+    std::cout << "Нажмите Enter для выхода..." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
+
+    delete[] arr;
+
+    return 0;
 }

@@ -4,41 +4,48 @@
 #include "io.hpp"
 #include "sortings.hpp"
 
+
 // TODO Интерфейс пользователя должен быть на русском языке
 int main() {
-    setlocale(LC_ALL, "ru-RU.UTF-8");
-	std::cout << "Вводите числа(int) массива, после напишите 's', чтобы закончить" << std::endl;
+	std::cout << "Введите кол-во чисел массива: " << std::endl;
 
-	bool active = true;
-	int count = 0;
-	std::string input;
-	std::string current;
+	int amount = 0;
 
-	while (active == true) {
-		std::cin >> current;
+	std::cin >> amount;
 
-		if (current != "s") {
-			input += current + " ";
+	int *arr = new int[amount];
 
-			count++;
-		}
+	if (amount == 0) {
+		std::cout << "не" << std::endl;
 
-		else { active = false; }
+		std::cout << "Нажмите Enter для выхода..." << std::endl;
+		std::cin.ignore(); // Очищает буфер (если до этого был ввод)
+		std::cin.get();
+
+		return 0;
 	}
 
-	int arr[count];
+    int current = 0;
 
-	list_convs::str_to_array(input, arr);
+	for (int i = 0; i < amount; i++) {
+		std::cout << "Число i = " << i << ": " << std::endl;
 
-	list_io::cout_list(arr, count);
+		std::cin >> current;
 
-	list_sorts::my_sort(arr, count);
+		arr[i] = current;
+	}
 
-	list_io::cout_list(arr, count);
+	list_io::cout_list(arr, amount);
 
-	std::cout << "Нажмите Enter для выхода...";
+	list_sorts::my_sort(arr, amount);
+
+	list_io::cout_list(arr, amount);
+
+	std::cout << "Нажмите Enter для выхода..." << std::endl;
 	std::cin.ignore(); // Очищает буфер (если до этого был ввод)
 	std::cin.get();
+
+	delete[] arr;
 
     // TODO Пользователь вводит размер массив и элементы массива
 
