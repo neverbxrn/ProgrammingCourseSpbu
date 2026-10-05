@@ -1,0 +1,15 @@
+@echo off
+chcp 1251 > log
+del log
+
+set MAIN=program.cpp
+set EXE=./build/myprog.exe
+
+:: -fexec-charset=utf-8 в Windows не работает
+set CHARSET="-finput-charset=utf-8 -fexec-charset=utf-8"
+
+if exist %EXE% del %EXE%
+
+g++ "%CHARSET%" %MAIN% -o %EXE%
+
+%EXE%
