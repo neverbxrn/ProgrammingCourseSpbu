@@ -2,7 +2,7 @@
 #include <cmath>
 
 int main() {
-    int date, day, month, year, century_year, century;
+    int date, month, year;
 
     std::cout << "Введите число месяца:" << std::endl;
     std::cin >> date; // 5
@@ -11,10 +11,14 @@ int main() {
     std::cout << "Введите год:" << std::endl;
     std::cin >> year; // 2026
 
-    century_year = (year%100); // 26
-    century = (year/100); // 20
+    int century_year = (year%100); // 26
+    int century = (year/100); // 20
 
-    day=((date+((13*month-1)/5)+(century_year/4)+(century/4)-2*century)-1)%7;
+    int day = (
+        (date +
+        ((13 * month - 1) / 5) +
+        (century_year / 4) +
+        (century / 4) - 2 * century) - 1) % 7;
 
     char *days[] = {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"};
 
