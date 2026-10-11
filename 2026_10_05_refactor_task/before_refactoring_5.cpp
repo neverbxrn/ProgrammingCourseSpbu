@@ -5,11 +5,13 @@ int main() {
     int date, month, year;
 
     std::cout << "Введите число месяца:" << std::endl;
-    std::cin >> date; // 5
+    std::cin >> date;
+
     std::cout << "Введите номер месяца:" << std::endl;
-    std::cin >> month; // 10
+    std::cin >> month;
+
     std::cout << "Введите год:" << std::endl;
-    std::cin >> year; // 2026
+    std::cin >> year;
 
     int century_year = (year%100); // 26
     int century = (year/100); // 20
